@@ -3,6 +3,16 @@ on:
   pull_request:
     types:
       - opened
+    branches:
+      - main
+  workflow_dispatch: # Manually trigger the workflow
+  push:
+    branches:
+      - main
+      - 'dev-*' # Branches starting with 'dev-'
+      - 'feature/**' # Branches starting with 'feature/ that could include more than one level of subdirectories'
+    paths-ignore:
+      - '.github/workflows/**' # Ignore changes in the workflows directory
 jobs:
   deploy:
     runs-on: ubuntu-latest
